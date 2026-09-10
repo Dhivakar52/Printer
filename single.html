@@ -64,10 +64,10 @@
         display: block;
     }
 
-    /* ===== Print view: only #printArea shows, exact 90x70mm, 3mm gap ===== */
+    /* ===== Print view: only #printArea shows, exact 90x70mm, 3mm gap, one label per physical feed ===== */
     @media print {
         @page {
-            size: auto;
+            size: 90mm 70mm;
             margin: 0mm;
         }
         body {
@@ -80,7 +80,7 @@
         }
         .label-row {
             padding: 0;
-            display: block !important;   /* force single column, ignore driver's wider page width */
+            display: block !important;   /* force single column — ignore driver's wider page width */
         }
         .bag-label {
             display: flex !important;
@@ -89,10 +89,10 @@
             margin: 0 3mm 3mm 0 !important;
             page-break-inside: avoid;
             break-inside: avoid;
-            page-break-after: always;        /* one label per physical feed/page */
+            page-break-after: always;    /* one label per physical feed/page */
         }
         .bag-label:last-child {
-            page-break-after: auto;
+            page-break-after: auto;      /* no extra blank feed after the final label */
         }
     }
 </style>
@@ -114,11 +114,22 @@
         <div class="row"><span class="label">Expiry Date:</span><span class="value">19/10/2026 00:00:00</span></div>
         <div class="row"><span class="label">Blood Group:</span><span class="value">A Positive</span></div>
         <div class="barcode-wrap">
-           
             <svg class="barcode" jsbarcode-value="08092026-1" jsbarcode-height="35" jsbarcode-fontsize="10" jsbarcode-margin="0"></svg>
         </div>
     </div>
 
+    <div class="bag-label">
+        <div class="row"><span class="label">Bag No:</span><span class="value">08092027</span></div>
+        <div class="row"><span class="label">Type of Bag:</span><span class="value">Triple Bag 350ml</span></div>
+        <div class="row"><span class="label">Bleeding Date:</span><span class="value">07/09/2026 13:15</span></div>
+        <div class="row"><span class="label">Segment No:</span><span class="value">5k232485</span></div>
+        <div class="row"><span class="label">Component:</span><span class="value">Packed Cell</span></div>
+        <div class="row"><span class="label">Expiry Date:</span><span class="value">19/10/2026 00:00:00</span></div>
+        <div class="row"><span class="label">Blood Group:</span><span class="value">B Positive</span></div>
+        <div class="barcode-wrap">
+            <svg class="barcode" jsbarcode-value="08092027-1" jsbarcode-height="35" jsbarcode-fontsize="10" jsbarcode-margin="0"></svg>
+        </div>
+    </div>
 
 </div>
 
