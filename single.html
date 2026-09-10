@@ -72,7 +72,7 @@
         }
         body {
             background: #fff;
-            padding: 3mm;
+            padding: 0;
             margin: 0;
         }
         .toolbar {
@@ -84,12 +84,12 @@
         }
         .bag-label {
             display: flex !important;
-            width: 90mm !important;
-            height: 70mm !important;
-            margin: 0 3mm 3mm 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;        /* no CSS margin — the 3mm gap is physical media between stickers, handled by the printer/gap sensor, not drawn space */
             page-break-inside: avoid;
             break-inside: avoid;
-            page-break-after: always;    /* one label per physical feed/page */
+            page-break-after: always;    /* one label = one page = one physical sticker */
         }
         .bag-label:last-child {
             page-break-after: auto;      /* no extra blank feed after the final label */
