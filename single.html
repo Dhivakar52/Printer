@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bag Label Print</title>
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+<style>
+    /* ===== Screen view ===== */
+    body {
+        font-family: Arial, sans-serif;
+        background: #eee;
+        padding: 20px;
+    }
+    .toolbar button {
+        padding: 8px 18px;
+        font-size: 14px;
+        cursor: pointer;
+        margin-bottom: 15px;
+    }
+
+    .label-row {
+        display: flex;
+        flex-wrap: wrap;
+        background: #fff;
+        padding: 3mm;
+        width: fit-content;
+    }
+    .bag-label {
+        box-sizing: border-box;
+        width: 90mm;
+        height: 70mm;
+        margin: 0 3mm 3mm 0;
+        border: 1.5px solid #222;
+        border-radius: 6px;
+        padding: 3mm 4mm;
+        font-size: 10.5pt;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .bag-label .row {
+        display: flex;
+        line-height: 1.25;
+        margin: 1.1mm 0;
+    }
+    .bag-label .label {
+        font-weight: bold;
+        min-width: 34mm;
+        flex-shrink: 0;
+    }
+    .bag-label .value {
+        font-weight: normal;
+    }
+    .bag-label .barcode-wrap {
+        margin-top: 1mm;
+    }
+    .bag-label .barcode-wrap .label {
+        margin-bottom: 0.5mm;
+    }
+    .bag-label svg {
+        max-width: 100%;
+        height: 14mm;
+        display: block;
+    }
+
+    /* ===== Print view: only #printArea shows, exact 90x70mm, 3mm gap ===== */
+    @media print {
+        @page {
+            size: auto;
+            margin: 0mm;
+        }
+        body {
+            background: #fff;
+            padding: 3mm;
+            margin: 0;
+        }
+        .toolbar {
+            display: none;
+        }
+        .label-row {
+            padding: 0;
+        }
+        .bag-label {
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+    <button id="printBtn">🖨️ Print</button>
+</div>
+
+<div id="printArea" class="label-row">
+
+    <div class="bag-label">
+        <div class="row"><span class="label">Bag No:</span><span class="value">08092026</span></div>
+        <div class="row"><span class="label">Type of Bag:</span><span class="value">Triple Bag 350ml</span></div>
+        <div class="row"><span class="label">Bleeding Date:</span><span class="value">07/09/2026 13:00</span></div>
+        <div class="row"><span class="label">Segment No:</span><span class="value">5k232484</span></div>
+        <div class="row"><span class="label">Component:</span><span class="value">Packed Cell</span></div>
+        <div class="row"><span class="label">Expiry Date:</span><span class="value">19/10/2026 00:00:00</span></div>
+        <div class="row"><span class="label">Blood Group:</span><span class="value">A Positive</span></div>
+        <div class="barcode-wrap">
+           
+            <svg class="barcode" jsbarcode-value="08092026-1" jsbarcode-height="35" jsbarcode-fontsize="10" jsbarcode-margin="0"></svg>
+        </div>
+    </div>
+
+   
+
+</div>
+
+<script>
+    window.addEventListener("load", function () {
+        if (window.JsBarcode) {
+            JsBarcode(".barcode").init();
+        }
+    });
+
+    document.getElementById("printBtn").addEventListener("click", function () {
+        window.print();
+    });
+</script>
+
+</body>
+</html>
