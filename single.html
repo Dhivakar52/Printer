@@ -3,9 +3,25 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Bag Label Print - Credit Card Size</title>
+    <title>Bag Label - Credit Card Height</title>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
     <style>
+        /* ============================================
+           🔧 WIDTH MATTUM INGA MAATHUNGA
+           ============================================ */
+        :root {
+            --label-width: 75.6mm;
+            /* 👈 இங்க மட்டும் width மாத்துங்க */
+            --label-height: 54mm;
+            /* Height fix - credit card */
+            --label-padding: 1.5mm;
+            /* உள்ளே gap */
+            --label-gap: 3mm;
+            /* Labels-க்கு நடுவுல gap */
+        }
+
+        /* ============================================ */
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -24,7 +40,6 @@
         /* ===== Toolbar ===== */
         .toolbar {
             margin-bottom: 20px;
-            text-align: center;
         }
 
         .toolbar button {
@@ -37,39 +52,35 @@
             font-size: 16px;
         }
 
-        /* ===== Label Container - CREDIT CARD SIZE ===== */
+        /* ===== Label (Dynamic width) ===== */
         .label-container {
-            width: 85.6mm;
-            height: 54mm;
+            width: var(--label-width);
+            height: var(--label-height);
             background: white;
-            border: 1px dashed #ccc;
-            padding: 2mm;
+            border: 1px dashed #bbb;
+            padding: var(--label-padding);
+            margin-bottom: var(--label-gap);
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 3mm;
-            /* 3mm gap between labels */
             overflow: hidden;
         }
 
-        /* Content Wrapper */
+        /* Border box */
         .content-wrapper {
             width: 100%;
             height: 100%;
             border: 1px solid #000;
-            padding: 1.5mm;
+            padding: 1mm;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            gap: 0.5mm;
         }
 
-        /* Rows */
+        /* Each row */
         .row {
             display: flex;
-            font-size: 7pt;
-            line-height: 1.15;
+            font-size: 6.5pt;
+            line-height: 1.1;
         }
 
         .label-text {
@@ -83,11 +94,10 @@
             text-align: left;
         }
 
-        /* Barcode Section */
+        /* Barcode */
         .barcode-section {
             text-align: center;
             margin-top: 0.5mm;
-            width: 100%;
         }
 
         .barcode-section svg {
@@ -95,9 +105,9 @@
             height: auto;
         }
 
-        /* ===== PRINT STYLES ===== */
+        /* ===== PRINT SETTINGS ===== */
         @page {
-            size: 85.6mm 54mm auto;
+            size: var(--label-width) var(--label-height) auto;
             margin: 0;
         }
 
@@ -106,7 +116,7 @@
                 background: white;
                 padding: 0;
                 margin: 0;
-                width: 85.6mm;
+                width: var(--label-width);
             }
 
             .toolbar {
@@ -114,12 +124,11 @@
             }
 
             .label-container {
-                width: 85.6mm;
-                height: 54mm;
+                width: var(--label-width);
+                height: var(--label-height);
                 border: none;
-                padding: 2mm;
-                margin: 0 0 3mm 0;
-                /* 3mm gap between labels */
+                padding: var(--label-padding);
+                margin: 0 0 var(--label-gap) 0;
                 page-break-after: always;
                 page-break-inside: avoid;
             }
@@ -197,14 +206,13 @@
     </div>
 
     <script>
-        // ⚠️ IMPORTANT: Use class selector to target ALL barcodes
-        document.querySelectorAll('.barcode').forEach(function (el, index) {
-            JsBarcode(el, "08092026-" + (index + 1), {
+        document.querySelectorAll('.barcode').forEach(function (el, i) {
+            JsBarcode(el, "08092026-" + (i + 1), {
                 format: "CODE128",
-                width: 1.2,
-                height: 30,
+                width: 1.1,
+                height: 28,
                 displayValue: true,
-                fontSize: 9,
+                fontSize: 8,
                 margin: 0
             });
         });
