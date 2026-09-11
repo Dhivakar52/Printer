@@ -7,17 +7,19 @@
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
     <style>
         /* ============================================
-           🔧 WIDTH MATTUM INGA MAATHUNGA
+           🔧 INGA MATTUM MAATHUNGA
            ============================================ */
         :root {
             --label-width: 75.6mm;
-
             --label-height: 54mm;
-            /* Height fix - credit card */
             --label-padding: 3mm;
-            /* உள்ளே gap */
             --label-gap: 3mm;
-            /* Labels-க்கு நடுவுல gap */
+
+            /* 👇 FONT SIZE */
+            --font-size: 11px;
+            /* 👈 இங்க மட்டும் மாத்துங்க */
+            --barcode-font-size: 12px;
+            /* Barcode-க்கு கீழே உள்ள எண் */
         }
 
         /* ============================================ */
@@ -52,7 +54,7 @@
             font-size: 16px;
         }
 
-        /* ===== Label (Dynamic width) ===== */
+        /* ===== Label ===== */
         .label-container {
             width: var(--label-width);
             height: var(--label-height);
@@ -79,8 +81,9 @@
         /* Each row */
         .row {
             display: flex;
-            font-size: 6.5pt;
-            line-height: 1.1;
+            font-size: var(--font-size);
+            /* 👈 12px apply ஆகும் */
+            line-height: 1.15;
         }
 
         .label-text {
@@ -107,7 +110,7 @@
 
         /* ===== PRINT SETTINGS ===== */
         @page {
-            size: var(--label-width) var(--label-height) auto;
+            size: var(--label-width) var(--label-height);
             margin: 0;
         }
 
@@ -139,6 +142,11 @@
 
             .content-wrapper {
                 border: 1px solid #000;
+            }
+
+            /* Print-லயும் அதே font size */
+            .row {
+                font-size: var(--font-size);
             }
         }
     </style>
@@ -212,7 +220,7 @@
                 width: 1.1,
                 height: 28,
                 displayValue: true,
-                fontSize: 8,
+                fontSize: 12,       /* 👈 Barcode-க்கு கீழே உள்ள எண் 12px */
                 margin: 0
             });
         });
