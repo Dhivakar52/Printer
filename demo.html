@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bag Label - Credit Card Height</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <style>
+        /* ============================================
+           🔧 WIDTH MATTUM INGA MAATHUNGA
+           ============================================ */
+        :root {
+            --label-width: 85mm;
+
+            --label-height: 65mm;
+            /* Height fix - credit card */
+            --label-padding: 3mm;
+            /* உள்ளே gap */
+            --label-gap: 3mm;
+            --fontSize: 12px;
+            /* Labels-க்கு நடுவுல gap */
+        }
+
+        /* ============================================ */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f8;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ===== Toolbar ===== */
+        .toolbar {
+            margin-bottom: 20px;
+        }
+
+        .toolbar button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* ===== Label (Dynamic width) ===== */
+        .label-container {
+            width: var(--label-width);
+            height: var(--label-height);
+            background: white;
+            border: 1px dashed #bbb;
+            padding: var(--label-padding);
+            margin-bottom: var(--label-gap);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Border box */
+        .content-wrapper {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #000;
+            padding: 3mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 9px;
+        }
+
+
+        /* Each row */
+        .row {
+            display: flex;
+            font-size: 6.5pt;
+            line-height: 1.1;
+        }
+
+        .label-text {
+            font-weight: bold;
+            width: 38%;
+            text-align: left;
+            font-size: var(--fontSize);
+        }
+
+        .value-text {
+            width: 62%;
+            text-align: left;
+            font-size: var(--fontSize);
+        }
+
+        /* Barcode */
+        .barcode-section {
+            text-align: center;
+            margin-top: 0.5mm;
+        }
+
+        .barcode-section svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ===== PRINT SETTINGS ===== */
+        @page {
+            size: var(--label-width) var(--label-height) auto;
+            margin: 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+                width: var(--label-width);
+            }
+
+            .toolbar {
+                display: none;
+            }
+
+            .label-container {
+                width: var(--label-width);
+                height: var(--label-height);
+                border: none;
+                padding: var(--label-padding);
+                margin: 0 0 var(--label-gap) 0;
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+
+            .label-container:last-child {
+                page-break-after: auto;
+            }
+
+            .content-wrapper {
+                border: 1px solid #000;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <button onclick="window.print()">🖨️ Print Label</button>
+    </div>
+
+    <!-- Label 1 -->
+    <div class="label-container">
+        <div class="content-wrapper">
+            <div class="row"><span class="label-text">Bag No:</span><span class="value-text">08092026</span></div>
+            <div class="row"><span class="label-text">Type of Bag:</span><span class="value-text">Triple Bag
+                    350ml</span></div>
+            <div class="row"><span class="label-text">Bleeding Date:</span><span class="value-text">07/09/2026
+                    13.00</span></div>
+            <div class="row"><span class="label-text">Serment No:</span><span class="value-text">5k 222dR4</span></div>
+            <div class="row"><span class="label-text">Component:</span><span class="value-text">Packed Cell</span></div>
+            <div class="row"><span class="label-text">Expiry Date:</span><span class="value-text">19/10/2026</span>
+            </div>
+            <div class="row"><span class="label-text">Blood Group:</span><span class="value-text">A Positive</span>
+            </div>
+            <div class="barcode-section"><svg class="barcode"></svg></div>
+        </div>
+    </div>
+
+    <!-- Label 2 -->
+    <div class="label-container">
+        <div class="content-wrapper">
+            <div class="row"><span class="label-text">Bag No:</span><span class="value-text">08092026</span></div>
+            <div class="row"><span class="label-text">Type of Bag:</span><span class="value-text">Triple Bag
+                    350ml</span></div>
+            <div class="row"><span class="label-text">Bleeding Date:</span><span class="value-text">07/09/2026
+                    13.00</span></div>
+            <div class="row"><span class="label-text">Serment No:</span><span class="value-text">5k 222dR4</span></div>
+            <div class="row"><span class="label-text">Component:</span><span class="value-text">Packed Cell</span></div>
+            <div class="row"><span class="label-text">Expiry Date:</span><span class="value-text">19/10/2026</span>
+            </div>
+            <div class="row"><span class="label-text">Blood Group:</span><span class="value-text">A Positive</span>
+            </div>
+            <div class="barcode-section"><svg class="barcode"></svg></div>
+        </div>
+    </div>
+
+    <!-- Label 3 -->
+    <div class="label-container">
+        <div class="content-wrapper">
+            <div class="row"><span class="label-text">Bag No:</span><span class="value-text">08092026</span></div>
+            <div class="row"><span class="label-text">Type of Bag:</span><span class="value-text">Triple Bag
+                    350ml</span></div>
+            <div class="row"><span class="label-text">Bleeding Date:</span><span class="value-text">07/09/2026
+                    13.00</span></div>
+            <div class="row"><span class="label-text">Serment No:</span><span class="value-text">5k 222dR4</span></div>
+            <div class="row"><span class="label-text">Component:</span><span class="value-text">Packed Cell</span></div>
+            <div class="row"><span class="label-text">Expiry Date:</span><span class="value-text">19/10/2026</span>
+            </div>
+            <div class="row"><span class="label-text">Blood Group:</span><span class="value-text">A Positive</span>
+            </div>
+            <div class="barcode-section"><svg class="barcode"></svg></div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.barcode').forEach(function (el, i) {
+            JsBarcode(el, "08092026-" + (i + 1), {
+                format: "CODE128",
+                width: 1.1,
+                height: 28,
+                displayValue: true,
+                fontSize: 8,
+                margin: 0
+            });
+        });
+    </script>
+</body>
+
+</html>
